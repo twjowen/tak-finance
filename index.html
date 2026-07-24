@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finance your new roof — TAK Roofing</title>
+  <meta name="description" content="Spread the cost of your new roof. Apply for finance online through Te Ara Kaihanga's finance partner and pay it off over time." />
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <style>
+    /* TAK brand — confirm exact hex with Tia (accent is a Colorsteel-style steel blue placeholder) */
+    :root {
+      --tak-black: #0f1215;
+      --tak-ink: #1c2126;
+      --tak-white: #ffffff;
+      --tak-paper: #f5f6f4;
+      --tak-line: #e2e5e1;
+      --tak-accent: #2f5d74;      /* steel blue — confirm */
+      --tak-accent-ink: #234a5d;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--tak-ink); }
+    h1, h2, h3 { text-wrap: balance; }
+    /* Give the third-party finance form room to breathe and inherit our type */
+    #finance-form-mount { font-family: 'Inter', sans-serif; min-height: 320px; }
+    #finance-form-mount input, #finance-form-mount select, #finance-form-mount textarea { max-width: 100%; }
+  </style>
+</head>
+<body class="bg-white text-[var(--tak-ink)]">
+
+  <!-- SECTION: Header -->
+  <header class="border-b border-[var(--tak-line)]">
+    <div class="max-w-5xl mx-auto px-5 py-4 flex items-center justify-between">
+      <a href="https://www.tearakaihanga.nz" class="flex items-center gap-2">
+        <img
+          src="https://placehold.co/160x40/0f1215/ffffff?text=TE+ARA+KAIHANGA"
+          alt="Te Ara Kaihanga — TAK Roofing and Construction"
+          data-image="tak-wordmark"
+          class="h-8 w-auto"
+        />
+      </a>
+      <a href="tel:+64212923413" class="text-sm font-semibold text-[var(--tak-accent-ink)] hover:underline">021 292 3413</a>
+    </div>
+  </header>
+
+  <!-- SECTION: Hero -->
+  <section class="bg-[var(--tak-paper)]">
+    <div class="max-w-5xl mx-auto px-5 py-14 md:py-20">
+      <p class="text-xs font-semibold tracking-widest uppercase text-[var(--tak-accent-ink)] mb-4">TAK Roofing · Finance</p>
+      <h1 class="text-3xl md:text-5xl font-extrabold leading-tight text-[var(--tak-black)] max-w-2xl">
+        Spread the cost of your new roof
+      </h1>
+      <p class="mt-5 text-lg md:text-xl text-[var(--tak-ink)] max-w-xl">
+        Pay it off over time instead of all at once. Apply online in a few minutes through our finance partner.
+      </p>
+      <p class="mt-3 text-base text-gray-500 max-w-xl">
+        No pressure. It is just here if it makes things easier.
+      </p>
+      <div class="mt-8">
+        <a href="#apply" class="inline-block bg-[var(--tak-accent)] text-white font-semibold px-7 py-3.5 rounded-lg hover:bg-[var(--tak-accent-ink)] transition-colors">
+          Apply for finance
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: How it works -->
+  <section class="max-w-5xl mx-auto px-5 py-14">
+    <div class="grid gap-8 md:grid-cols-3">
+      <div>
+        <div class="text-sm font-bold text-[var(--tak-accent-ink)]">Step 1</div>
+        <h3 class="mt-1 text-lg font-bold text-[var(--tak-black)]">Apply in minutes</h3>
+        <p class="mt-2 text-gray-600">A quick online form. Nothing to print or post.</p>
+      </div>
+      <div>
+        <div class="text-sm font-bold text-[var(--tak-accent-ink)]">Step 2</div>
+        <h3 class="mt-1 text-lg font-bold text-[var(--tak-black)]">Get a decision</h3>
+        <p class="mt-2 text-gray-600">Our finance partner reviews it and comes back to you.</p>
+      </div>
+      <div>
+        <div class="text-sm font-bold text-[var(--tak-accent-ink)]">Step 3</div>
+        <h3 class="mt-1 text-lg font-bold text-[var(--tak-black)]">We book your roof</h3>
+        <p class="mt-2 text-gray-600">Once you are approved, we lock in your start date.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: Apply (finance form embed) -->
+  <section id="apply" class="bg-[var(--tak-paper)] border-t border-[var(--tak-line)]">
+    <div class="max-w-3xl mx-auto px-5 py-14 md:py-16">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-[var(--tak-black)]">Apply for finance</h2>
+      <p class="mt-3 text-gray-600 max-w-xl">
+        Fill in the form below. It goes straight to our finance partner, who sorts your application and gets back to you.
+      </p>
+
+      <div class="mt-8 bg-white border border-[var(--tak-line)] rounded-2xl shadow-sm overflow-hidden">
+        <!-- The better.co.nz form lives on its own clean page (form.html) and is framed in here,
+             so it can own its page (the portal requires a clean/empty page) without breaking the branding. -->
+        <iframe
+          src="form.html"
+          title="Finance application form"
+          class="w-full block"
+          style="width:100%; min-height:1000px; border:0;"
+          loading="lazy"
+        ></iframe>
+      </div>
+      <p class="mt-3 text-sm text-gray-500">
+        Form not loading? Apply directly
+        <a href="form.html" class="text-[var(--tak-accent-ink)] underline">here</a>
+        or call us on <a href="tel:+64212923413" class="text-[var(--tak-accent-ink)] underline">021 292 3413</a>.
+      </p>
+
+      <!-- SECTION: Compliance note -->
+      <p class="mt-6 text-xs leading-relaxed text-gray-500 max-w-2xl">
+        Finance is arranged and provided by One Partner Limited (FSP403346), trading as better&trade;, which holds a
+        Class 2 Financial Advice Provider Licence issued by the Financial Markets Authority. Te Ara Kaihanga does not
+        provide financial advice. Approval, rates and terms are decided by the finance provider.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION: Footer -->
+  <footer class="bg-[var(--tak-black)] text-gray-300">
+    <div class="max-w-5xl mx-auto px-5 py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <div class="text-white font-bold">Te Ara Kaihanga</div>
+        <div class="text-sm text-gray-400">TAK Roofing &middot; TAK Projects &middot; Māori-owned, Northland</div>
+      </div>
+      <div class="text-sm flex flex-col gap-1">
+        <a href="tel:+64212923413" class="hover:text-white">021 292 3413</a>
+        <a href="mailto:admin@tearakaihanga.nz" class="hover:text-white">admin@tearakaihanga.nz</a>
+        <a href="https://www.tearakaihanga.nz" class="hover:text-white">tearakaihanga.nz</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Smooth scroll for anchor links -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>
