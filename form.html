@@ -5,21 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Finance application — TAK Roofing</title>
   <style>
+    html, body { margin: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
       padding: 16px;
-      color: #1c2126;
+      color: #11141f;
       background: #ffffff;
+      overflow: hidden; /* parent sizes us, no nested scrollbar */
     }
   </style>
 </head>
 <body>
   <!-- CLEAN / EMPTY page for the better.co.nz form, exactly as the portal requires.
-       The branded page (index.html) loads this in an iframe so the form owns its own page. -->
+       The branded page (index.html) loads this in an iframe so the form owns its own page.
+
+       DO NOT add async/defer to the script below and DO NOT inject it dynamically.
+       The vendor script uses document.write(), so it must run synchronously during the
+       initial parse. Anything else blanks the document and lead capture dies.
+       The id it emits (#form-embed) is load-bearing for the vendor's own resize listener. -->
   <script src="https://portal.better.co.nz/embed/form/dff3a05a3f6245b69ccf7eb19f42159f"></script>
+
   <noscript>
     Please turn on JavaScript to load the finance application form, or call us on 09 885 5851 and we will help you apply.
   </noscript>
+
+  <script>
+  /* Height relay. The vendor resizes #form-embed inside THIS document, but nothing was
+     resizing the outer iframe in index.html, so 652px of the form was being clipped.
+     We measure and post the real height up to the parent. Same-origin only. */
+  (function () {
+    var last = 0;
+
+    function report() {
+      var el = document.getElementById('form-embed');
+      var h = 0;
+      if (el) {
+        h = parseInt(el.style.height, 10) || el.offsetHeight || 0;
+      }
+      var docH = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight
+      );
+      h = Math.max(h, docH);
+      if (h && Math.abs(h - last) > 8) {
+        last = h;
+        try {
+          parent.postMessage({ takEvent: 'formHeight', height: h }, window.location.origin);
+        } catch (err) {}
+      }
+    }
+
+    /* the vendor posts {eventId:'resize', data:{height}} to this window - piggyback on it */
+    window.addEventListener('message', function (e) {
+      if (e.data && e.data.eventId === 'resize') { setTimeout(report, 30); }
+    }, false);
+
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(report);
+      ro.observe(document.body);
+      var el = document.getElementById('form-embed');
+      if (el) ro.observe(el);
+    }
+
+    window.addEventListener('load', report);
+    /* belt and braces: the vendor's height lands late and can change mid-application */
+    setInterval(report, 700);
+    report();
+  })();
+  </script>
 </body>
 </html>
